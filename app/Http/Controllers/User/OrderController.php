@@ -14,9 +14,9 @@ class OrderController extends BaseController
      */
     public function index(): JsonResource
     {
-        $user = $this->getUser();
+        $orders = $this->getUser()->orders()->orderBy('created_at', 'desc')->get();
 
-        return OrderResource::collection($user->orders);
+        return OrderResource::collection($orders);
     }
 
     /**
